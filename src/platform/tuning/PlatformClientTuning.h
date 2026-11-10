@@ -53,7 +53,10 @@
 #  define PLATFORM_CLIENT_PAID_CHECK                 0
 #  define PLATFORM_SYNC_STATS_ON_GUI_CHANGE          0
 #  define PLATFORM_EXIT_PROCESS_ON_SHUTDOWN          0
-#  define PLATFORM_RETURN_TO_MENU_ON_OOM             0
+// A PSP-1000 only ever grants a 24 MB user partition (the 52 MB build request
+// cannot be fulfilled there). When an allocation fails anyway, returning to
+// the menu keeps the console usable instead of leaving a frozen frame up.
+#  define PLATFORM_RETURN_TO_MENU_ON_OOM             1
 #  define PLATFORM_RELEASE_OLD_WORLD_BEFORE_PORTAL   0
 #else
 #  define PLATFORM_CLIENT_TIMER_HACK_THREAD          1

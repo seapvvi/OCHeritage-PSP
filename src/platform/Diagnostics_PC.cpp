@@ -24,3 +24,7 @@ long platformHeapFreeKb()
 void platformCaptureBadAlloc()
 {
 }
+
+void platformWatchdogHeartbeat()
+{
+}

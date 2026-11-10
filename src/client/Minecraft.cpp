@@ -933,6 +933,10 @@ void Minecraft::run()
                 const long_t clientFrameStartNs = System::nanoTime();
                 long_t clientRenderNs = 0;
                 ClientProfiler::frameBegin();
+                // Console watchdog: records that the frame loop reached the top
+                // of this iteration. The PSP diagnostic thread turns a missing
+                // heartbeat into a named stall in debug.log; no-op elsewhere.
+                platformWatchdogHeartbeat();
                 PlatformStreamingFrameBudget::beginFrame();
                 AxisAlignedBB::clearBoundingBoxPool();
                 Vec3D::initialize();

@@ -121,9 +121,13 @@ target_link_libraries(OptiCraft PRIVATE
 
 # Generate EBOOT.PBP target
 include("${PSPDEV}/psp/share/CreatePBP.cmake")
+# MEMSIZE 0 = 24 MB user partition: works on every PSP model, including
+# PSP-1000. MEMSIZE 1 asks the OS for the PSP-2000+ 52 MB partition; firmware
+# cannot grant it on a PSP-1000, and a build tuned to that budget freezes
+# there (hang after the world-creation loading screen, battery pull needed).
 create_pbp_file(
     TARGET OptiCraft
     TITLE "OptiCraft Heritage"
-    MEMSIZE 1
+    MEMSIZE 0
     OUTPUT_DIR "${CMAKE_BINARY_DIR}/bin/psp"
 )

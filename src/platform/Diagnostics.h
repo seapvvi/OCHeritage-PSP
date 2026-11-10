@@ -10,3 +10,10 @@ void platformCaptureBadAlloc();
 // the ones that need the number itself, such as the per-stage deltas in
 // platform/WorldLoadTrace.cpp.
 long platformHeapFreeKb();
+
+// Watchdog heartbeat for console targets. The main loop calls this once per
+// frame; a background diagnostic thread notices when it stops advancing and
+// records where the game stopped (WorldLoadTrace stage + free heap), so a
+// hardware hang leaves a trail in debug.log instead of dying silently.
+// No-op on platforms without the watchdog.
+void platformWatchdogHeartbeat();

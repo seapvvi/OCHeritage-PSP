@@ -28,6 +28,10 @@ void platformHardwareCheckpoint(const char* tag)
     Ps2RemoteDebug::checkpoint(tag);
 }
 
+void platformWatchdogHeartbeat()
+{
+}
+
 long platformHeapFreeKb()
 {
     return ps2_dbg_ram_free_kb();

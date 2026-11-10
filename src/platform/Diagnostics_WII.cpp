@@ -25,3 +25,7 @@ void platformCaptureBadAlloc()
 {
     wiiHeapCaptureBadAlloc();
 }
+
+void platformWatchdogHeartbeat()
+{
+}

@@ -148,7 +148,10 @@
 // Memory Card flush. Track gameplay edits separately from generation/lighting
 // dirtiness so walking does not turn every generated chunk into an I/O write.
 #ifndef PLATFORM_SAVE_RUNTIME_CHUNK_EDITS_ON_UNLOAD
-#  define PLATFORM_SAVE_RUNTIME_CHUNK_EDITS_ON_UNLOAD PLATFORM_PS2
+// PS2 and PSP serialise only gameplay-edited chunks when they leave the
+// resident cache: walking then never turns a generated chunk into a Memory
+// Stick write, while every real edit survives a crash or a battery pull.
+#  define PLATFORM_SAVE_RUNTIME_CHUNK_EDITS_ON_UNLOAD (PLATFORM_PS2 || PLATFORM_PSP)
 #endif
 
 #ifndef PLATFORM_PROFILE_RENDER_PHASES
